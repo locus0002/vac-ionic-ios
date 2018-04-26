@@ -1,0 +1,7 @@
+update macOS
+donwload xcode
+install brew
+install node
+install npm
+install cordova 6.3.1
+update minimatch
