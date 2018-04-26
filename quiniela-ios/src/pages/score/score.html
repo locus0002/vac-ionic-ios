@@ -1,0 +1,29 @@
+<!--
+  Generated template for the NewPage page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary" >
+    <ion-title>Puntuación </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="back-image" >
+
+  <ion-card *ngFor="let currentScore of scoreList">
+    <ion-item text-wrap >
+      <ion-thumbnail item-left>
+        <img src="assets/imgs/register-icon.png" />
+      </ion-thumbnail>
+      <h2>Grupo: {{currentScore.groupName}}</h2>
+      <p text-wrap>Campeonato: {{currentScore.championshipName}}</p>
+      <p>Puntos: {{currentScore.pointsAccumulated}}</p>
+    </ion-item>
+  </ion-card>
+
+</ion-content>

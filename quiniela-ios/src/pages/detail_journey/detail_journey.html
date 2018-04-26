@@ -1,0 +1,56 @@
+<!--
+  Generated template for the NewPage page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title text-wrap>{{currentJourney.journeyName}}</ion-title>
+  </ion-navbar>
+
+  <ion-navbar color="primary">
+    <ion-title>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Campeonato: {{currentJourney.championshipName}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content class="back-image" >
+
+  <ion-fab bottom right *ngIf="type == 'Q'">
+    <button ion-fab color="secondary" (click)="sendQuiniela()">
+      <ion-icon name="send"></ion-icon>
+    </button>
+  </ion-fab>
+
+  <ion-card *ngFor="let currentMatch of detailJourney;let i = index;">
+
+    <ion-row no-padding>
+      <ion-col col-1></ion-col>
+      <ion-col col-5> <img [src]="currentMatch.imageTeamPathA" /> </ion-col>
+      <ion-col col-5> <img [src]="currentMatch.imageTeamPathB" /> </ion-col>
+      <ion-col col-1></ion-col>
+    </ion-row>
+
+    <ion-card-content>
+      <ion-card-title text-center>
+        {{currentMatch.teamNameA}} vs {{currentMatch.teamNameB}}
+      </ion-card-title>
+      <h2 text-center><strong>Encuentro: </strong>{{currentMatch.matchNumber}}</h2>
+      <h2 text-center><strong>Marcador: </strong>{{currentMatch.score}}</h2>
+      <h2 text-center><strong>Pronostico: </strong>{{currentMatch.forecast}}</h2>
+      <h2 text-center><strong>Puntos: </strong>{{currentMatch.points}}</h2>
+
+    </ion-card-content>
+    <ion-row no-padding *ngIf="type == 'Q'">
+      <ion-col text-center>
+        <button ion-button clear small color="primary" icon-left (click)="updateForecast(i)">
+          <ion-icon name="create"></ion-icon>
+          Actualizar
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+
+</ion-content>
