@@ -1,0 +1,25 @@
+{
+    "name":"TimeoutError",
+    "stack":"TimeoutError@http://localhost:8080/var/containers/Bundle/Application/150C458F-C88A-462C-9F94-1A1F47DDB277/quiniela-ios.app/www/build/vendor.js:126831:30\nhttp://localhost:8080/var/containers/Bundle/Application/150C458F-C88A-462C-9F94-1A1F47DDB277/quiniela-ios.app/www/build/vendor.js:126735:139\nlogIn@http://localhost:8080/var/containers/Bundle/Application/150C458F-C88A-462C-9F94-1A1F47DDB277/quiniela-ios.app/www/build/main.js:92:25\n\ncallWithDebugContext@http://localhost:8080/var/containers/Bundle/Application/150C458F-C88A-462C-9F94-1A1F47DDB277/quiniela-ios.app/www/build/vendor.js:15472:47\ndispatchEvent@http://localhost:8080/var/containers/Bundle/Application/150C458F-C88A-462C-9F94-1A1F47DDB277/quiniela-ios.app/www/build/vendor.js:10378:36\nhttp://localhost:8080/var/containers/Bundle/Application/150C458F-C88A-462C-9F94-1A1F47DDB277/quiniela-ios.app/www/build/vendor.js:39484:65\nonInvokeTask@http://localhost:8080/var/containers/Bundle/Application/150C458F-C88A-462C-9F94-1A1F47DDB277/quiniela-ios.app/www/build/vendor.js:5125:43\nrunTask@http://localhost:8080/var/containers/Bundle/Application/150C458F-C88A-462C-9F94-1A1F47DDB277/quiniela-ios.app/www/build/polyfills.js:3:10844\ninvokeTask@http://localhost:8080/var/containers/Bundle/Application/150C458F-C88A-462C-9F94-1A1F47DDB277/quiniela-ios.app/www/build/polyfills.js:3:16801\np@http://localhost:8080/var/containers/Bundle/Application/150C458F-C88A-462C-9F94-1A1F47DDB277/quiniela-ios.app/www/build/polyfills.js:2:27654\nv@http://localhost:8080/var/containers/Bundle/Application/150C458F-C88A-462C-9F94-1A1F47DDB277/quiniela-ios.app/www/build/polyfills.js:2:27894",
+    "message":"Timeout has occurred"
+},
+
+{
+    "headers":{
+        "normalizedNames":{},
+        "lazyUpdate":null
+    },
+    "status":400,
+    "statusText":"Bad Request",
+    "url":"http://192.168.1.73:8081/login-native",
+    "ok":false,
+    "name":"HttpErrorResponse",
+    "message":"Http failure response for http://192.168.1.73:8081/login-native: 400 Bad Request",
+    "error":"Usuario, email o contraseña invalidos, por favor verifique."
+},
+
+{
+    "url":"/menu/admin",
+    "token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJsYXN0TmFtZSI6IkFjYSIsInBlcm1pc3Npb25zIjoidmVyX21lbnVfYWRtaW5pc3RyYWRvcixjYW1iaWFyX2NvbnRyYXNl4pSc4paSYSx2ZXJfbGlnYXMsY3JlYXJfbGlnYSxtb2RpZmljYXJfbGlnYSx2ZXJfbWVudV9saWdhLHZlcl9tZW51X2VxdWlwbyx2ZXJfZXF1aXBvcyxjcmVhcl9lcXVpcG8sbW9kaWZpY2FyX2VxdWlwbyx2ZXJfY2FtcGVvbmF0b3MsY3JlYXJfY2FtcGVvbmF0byx2ZXJfbWVudV9jYW1wZW9uYXRvcyx2ZXJfbWVudV9jYW1wZW9uYXRvLHZlcl9lcXVpcG9zX2NhbXBlb25hdG8sdmVyX2pvcm5hZGFzX2NhbXBlb25hdG8sYWdyZWdhcl9lcXVpcG9zX2NhbXBlb25hdG8sZWxpbWluYXJfZXF1aXBvX2NhbXBlb25hdG8sYnVzY2FyX25vbWJyZV9qb3JuYWRhLGNyZWFyX2pvcm5hZGEsdmVyX21lbnVfam9ybmFkYXMsdmVyX2pvcm5hZGFzLHZlcl9tZW51X2VuY3VlbnRvc19qb3JuYWRhLHZlcl9lbmN1ZW50cm9zX2pvcm5hZGEsY3JlYXJfZW5jdWVudHJvIiwicHJvZmlsZSI6MSwiaXNzIjoianF1aW5lbGEiLCJuYW1lIjoiVmxhZGltaXIiLCJpZCI6MjMsImV4cCI6MTUyNDc5MDM0NH0.l3JUWq4gNvbrZSyEzCZ4MGZE24fTst5xIkWEA7C0dbc",
+    "name":"Vladimir Aca"
+}
