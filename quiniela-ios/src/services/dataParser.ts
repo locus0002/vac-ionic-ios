@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Utils } from '../services/utils';
 import * as Constants from '../services/constants';
 import 'rxjs/add/operator/map';
 
@@ -12,7 +13,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class DataParser {
 
-    constructor(public http: HttpClient) {
+    constructor(public http: HttpClient, public utils: Utils) {
         console.log('Hello dataParser Provider');
     }
 
@@ -87,14 +88,21 @@ export class DataParser {
 
     parserPositionTableData(dataPositionsTable:Array<Array<string>>) {
 
+      let that = this,
+          imageDataURL = [];
+
       if (dataPositionsTable.length > 0) {
         return dataPositionsTable.map(function (currentPosition) {
+          imageDataURL = currentPosition[1].split('/');
           return {
             id: currentPosition[0],
             teamName: currentPosition[2],
+            teamKey: that.utils.buildKey(currentPosition[2]),
             points: currentPosition[3],
             difference: currentPosition[4],
-            imagePath: Constants.TEAM_IMAGE_PATH[currentPosition[2]]
+            imageURL: Constants.END_POINT_SANDBOX + currentPosition[1].substring(1),
+            imageFileName: imageDataURL[3],
+            imagePath: ''
           }
         });
       }
@@ -134,19 +142,32 @@ export class DataParser {
 
     parserDetailJourney(dataDetailJourney:Array<Array<string>>) {
 
+      let that = this;
+
       if (dataDetailJourney.length > 0) {
         return dataDetailJourney.map(function (currentDetailJourney) {
 
           let garbageA = currentDetailJourney[1].split("alt='Equip'>"),
               teamNameA = garbageA[1].split("vs")[0].trim(),
-              teamNameB = garbageA[2].trim();
+              teamNameB = garbageA[2].trim(),
+              urlImages = currentDetailJourney[1].split("src='"),
+              urlImageA = urlImages[1].split("' alt='")[0].trim(),
+              imageDataURL_A = urlImageA.split('/'),
+              urlImageB = urlImages[2].split("' alt='")[0].trim(),
+              imageDataURL_B = urlImageB.split('/');
 
           return {
             matchNumber: currentDetailJourney[0],
             teamNameA: teamNameA,
             teamNameB: teamNameB,
-            imageTeamPathA: Constants.TEAM_IMAGE_PATH[teamNameA],
-            imageTeamPathB: Constants.TEAM_IMAGE_PATH[teamNameB],
+            teamKeyA: that.utils.buildKey(garbageA[1].split("vs")[0].trim()),
+            teamKeyB: that.utils.buildKey(garbageA[2].trim()),
+            imageTeamPathA: '',
+            imageTeamPathB: '',
+            imageURL_A: Constants.END_POINT_SANDBOX + urlImageA.substring(1),
+            imageURL_B: Constants.END_POINT_SANDBOX + urlImageB.substring(1),
+            imageFileName_A: imageDataURL_A[3],
+            imageFileName_B: imageDataURL_B[3],
             score: currentDetailJourney[2],
             forecast: currentDetailJourney[3],
             points: currentDetailJourney[4]
@@ -162,11 +183,11 @@ export class DataParser {
         return {
           teamNameA: dataMatch[0].name,
           teamIdA: dataMatch[0].id,
-          imageTeamPathA: Constants.TEAM_IMAGE_PATH[dataMatch[0].name],
+          imageTeamPathA: '',
           forecastA:"",
           teamNameB: dataMatch[1].name,
           teamIdB: dataMatch[1].id,
-          imageTeamPathB: Constants.TEAM_IMAGE_PATH[dataMatch[1].name],
+          imageTeamPathB: '',
           forecastB:""
         };
       }

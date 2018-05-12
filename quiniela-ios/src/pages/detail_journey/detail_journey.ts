@@ -4,6 +4,7 @@ import { NavController, NavParams, AlertController, LoadingController, ModalCont
 import { DetailForecastPage } from '../detail_forecast/detail_forecast';
 import * as Constants from '../../services/constants';
 import { DataParser } from '../../services/dataParser';
+import { Utils } from '../../services/utils';
 /*
   Generated class for the detail_journey page.
 
@@ -30,8 +31,14 @@ export class DetailJourneyPage {
       matchNumber: string,
       teamNameA: string,
       teamNameB: string,
+      teamKeyA: string,
+      teamKeyB: string,
       imageTeamPathA: string,
       imageTeamPathB: string,
+      imageURL_A: string,
+      imageURL_B: string,
+      imageFileName_A: string,
+      imageFileName_B: string,
       score: string,
       forecast: string,
       points: string
@@ -47,7 +54,8 @@ export class DetailJourneyPage {
                 public loadingCtrl: LoadingController,
                 public modalCtrl: ModalController,
                 public http:HttpClient,
-                public dataParserCtrl: DataParser) {
+                public dataParserCtrl: DataParser,
+                public utilsCtrl: Utils) {
 
       this.currentUser = this.navParams.get("currentUser") || null;
       this.currentJourney = this.navParams.get("currentJourney") || null;
@@ -73,8 +81,16 @@ export class DetailJourneyPage {
         .timeout(10000)
         .subscribe(data => {
 
-          this.detailJourney = this.dataParserCtrl.parserDetailJourney(data);
-          loadingElement.dismiss();
+          let auxJournies = this.dataParserCtrl.parserDetailJourney(data);
+          this.utilsCtrl.synchronizeImages(auxJournies).then((data) => {
+            auxJournies = auxJournies.map(function (currentElemnt) {
+              currentElemnt.imageTeamPathA = data[currentElemnt.teamKeyA] || '';
+              currentElemnt.imageTeamPathB = data[currentElemnt.teamKeyB] || '';
+              return currentElemnt;
+            });
+            loadingElement.dismiss();
+            this.detailJourney = auxJournies;
+          });
 
         }, error => {
 
@@ -195,6 +211,8 @@ export class DetailJourneyPage {
         .subscribe(data => {
 
           let currentMatchData = this.dataParserCtrl.parserMatchData(data);
+          currentMatchData.imageTeamPathA = this.detailJourney[index].imageTeamPathA;
+          currentMatchData.imageTeamPathB = this.detailJourney[index].imageTeamPathB;
           loadingElement.dismiss();
           let currentModal = this.modalCtrl.create
             (DetailForecastPage,

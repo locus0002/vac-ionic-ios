@@ -4,6 +4,7 @@ import { NavController, NavParams, AlertController, LoadingController } from 'io
 import * as Constants from '../../services/constants';
 import { DataParser } from '../../services/dataParser';
 import { timeout } from 'rxjs/operators/timeout';
+import { Utils } from '../../services/utils';
 
 /*
   Generated class for the position_table page.
@@ -28,6 +29,9 @@ export class PositionTablePage {
     currentTeams: Array<{
       id: string,
       teamName: string,
+      teamKey: string,
+      imageURL: string,
+      imageFileName: string,
       points: string,
       difference: string,
       imagePath: string
@@ -40,7 +44,8 @@ export class PositionTablePage {
                 public alertCtrl: AlertController,
                 public loadingCtrl: LoadingController,
                 public http:HttpClient,
-                public dataParserCtrl: DataParser) {
+                public dataParserCtrl: DataParser,
+                public utilsCtrl: Utils) {
 
       this.currentUser = this.navParams.get("currentUser") || null;
       this.getChampionships();
@@ -62,8 +67,17 @@ export class PositionTablePage {
         .timeout(10000)
         .subscribe(data => {
 
-          this.currentTeams = this.dataParserCtrl.parserPositionTableData(data);
-          loadingElement.dismiss();
+          let auxTeams = this.dataParserCtrl.parserPositionTableData(data);
+          this.utilsCtrl.synchronizeImages(auxTeams).then((data) => {
+
+            auxTeams = auxTeams.map(function (currentElemnt) {
+              currentElemnt.imagePath = data[currentElemnt.teamKey] || '';
+              return currentElemnt;
+            });
+            
+            loadingElement.dismiss();
+            this.currentTeams = auxTeams;
+          });
 
         }, error => {
 

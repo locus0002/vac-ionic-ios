@@ -22,6 +22,7 @@ import { QuinielaPage } from '../pages/quinielas/quinielas';
 import { DetailJourneyPage } from '../pages/detail_journey/detail_journey';
 import { DetailForecastPage } from '../pages/detail_forecast/detail_forecast';
 import { Facebook } from '@ionic-native/facebook';
+import { Utils } from '../services/utils';
 
 @NgModule({
   declarations: [
@@ -71,6 +72,7 @@ import { Facebook } from '@ionic-native/facebook';
     SplashScreen,
     DataParser,
     Facebook,
+    Utils,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
