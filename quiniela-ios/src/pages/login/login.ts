@@ -117,7 +117,7 @@ export class LoginPage {
           let userId = responseFB.authResponse.userID,
               params = new Array<string>();
 
-          this.fb.api("/me?fields=gender,email,first_name,last_name,age_range,birthday,currency,hometown,link,location", params)
+          this.fb.api("/me?fields=gender,email,first_name,last_name", params)
             .then((userFB) => {
               userFB.picture = "https://graph.facebook.com/" + userId + "/picture?type=large";
 
@@ -178,7 +178,7 @@ export class LoginPage {
                 });*/
             });
         }, (error) => {
-          console.log("Error in login permission: " + error);
+          console.log("Error in login permission: " + JSON.stringify(error));
         });
     }
 

@@ -68,6 +68,10 @@ export class PositionTablePage {
         .subscribe(data => {
 
           let auxTeams = this.dataParserCtrl.parserPositionTableData(data);
+          auxTeams.sort(function (elmntA, elemntB) {
+            return parseInt(elmntA.points) - parseInt(elemntB.points);
+          });
+          auxTeams = auxTeams.reverse();
           this.utilsCtrl.synchronizeImages(auxTeams).then((data) => {
 
             auxTeams = auxTeams.map(function (currentElemnt) {

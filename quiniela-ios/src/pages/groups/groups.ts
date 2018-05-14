@@ -70,7 +70,7 @@ export class GroupsPage {
 
     addFriendRequest(groupIndex:number, emailFriend:string) {
 
-      let bodyDatta = 'token=' + this.currentUser.token + '&group=' + this.groupList[0].key + '&name=' + this.groupList[0].nameGroup + '&toEmails=' + emailFriend,
+      let bodyDatta = 'token=' + this.currentUser.token + '&group=' + this.groupList[groupIndex].key + '&name=' + this.groupList[groupIndex].nameGroup + '&toEmails=' + emailFriend,
         loadBox = this.loadingCtrl.create(
           {
             content: 'Enviando invitación...'
